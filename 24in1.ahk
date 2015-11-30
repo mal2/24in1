@@ -22,7 +22,7 @@ SetTitleMatchMode,1
 
 ScriptName         = 24in1
 ScriptNameClean    = Aleph Shortcuts
-ScriptVersion      = 2.5.4
+ScriptVersion      = 2.6
 
 ; #NoTrayIcon ;  ExitApp muss dann aktiv sein
 
@@ -353,6 +353,10 @@ add=0 ; Globale Variable für den +n cutter
 	; nach Cutter des Autoren suchen	
 ;	GoSub, CutterJo_o
 ;	Return
+	
+#c::
+	GoSub, Cutter_reverse
+	Return
 	
 !d::
 	; zur Indexsuche springen
@@ -1285,12 +1289,20 @@ congress_search:
 	Send, ^c
 	Clipwait
 	Sleep, 200
-
+	
+	WinGetClass, WinClass
 	Loop, parse, clipboard, `n, `r
 	{
 	;MsgBox, %A_Index% = %A_LoopField%
-	If (A_Index == 8) {
-    csn = %A_LoopField%
+	
+	if (WinClass == "Chrome_WidgetWin_1") {
+		If (A_Index == 9) {
+		csn = %A_LoopField%
+		}
+	} else {
+			If (A_Index == 8) {
+		csn = %A_LoopField%
+		}
 	}
 	}
 	
@@ -1809,6 +1821,17 @@ IfWinExist, ahk_class Catalog500.22.0
 	Send, {TAB 13}
 	Send, ^c
 	Sleep, 100
+	if (clipboard="09"){
+		excel.ActiveSheet.Range("E6").Value := "komplett grün"
+		loca = LBS
+		Send, !2
+		Sleep, 100
+		Send, {TAB 2}
+		Sleep, 100
+		Send, LBS
+		Sleep, 100
+		Send, {Enter}
+	}
 	if (clipboard="01"){
 		excel.ActiveSheet.Range("E6").Value := "grün"
 	}
@@ -2160,7 +2183,33 @@ Else
     MsgBox,48,Hinweis,Dieser Shortcut funktioniert nur, wenn ein Cutter Jo-Fenster aktiv ist!`nDies scheint nicht der Fall zu sein!
 Return
 
+Cutter_reverse:
+; nach Cutter des markierten Textes suchen
+IfWinExist, UB Eichstaett-Ingolstadt: Cutter Jo
+{
+	Send, ^3
+	Sleep, 100
+	Send, !2
+	Sleep, 100
+	Send, {Tab 9}
+	Sleep, 100
+	Send, ^c
+	Sleep, 100
+	clipwait
 
+	StringGetPos, posL, clipboard, %A_Space%, L2
+	posL +=1
+	StringTrimLeft, str, clipboard, %posL%
+	StringLeft, str, str, 4
+	
+	excel := ComObjActive("Excel.Application")	
+	excel.ActiveSheet.Range("I8").Value := str
+
+	return
+}
+Else
+    MsgBox,48,Hinweis,Dieser Shortcut funktioniert nur, wenn ein Cutter Jo-Fenster aktiv ist!`nDies scheint nicht der Fall zu sein!
+Return
 
 OGND_search:
 IfWinExist, OGND 
@@ -2198,13 +2247,16 @@ IfWinExist, RVK
 	}
 	
 	WinActivate, RVK
+	WinWaitActive, RVK
 	SetKeyDelay, -1
-	Sleep, 100
+	Sleep, 200
 	Send, ^l
-
+	Sleep, 200
 	SendRaw, %sstr%
-	Sleep, 100
+	Sleep, 400
 	Send, {DEL}
+	Sleep, 100
+	
 	Send, {ENTER}
 
 	If (rvk_search = "true"){
