@@ -1,8 +1,8 @@
-﻿;
+;
 ; AutoHotkey Version: 1.x
 ; Language:       English
 ; Platform:       Win9x/NT
-; Author:         A.N.Other <myemail@nowhere.com>
+; Author:         Kenny <k.b@fu-berlin.de>
 ;
 ; -----------------------------------------------------------------------------
 ; === Global Settings =========================================================

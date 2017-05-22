@@ -1,8 +1,8 @@
-﻿;
+;
 ; AutoHotkey Version: 1.x
 ; Language:       English
 ; Platform:       Win9x/NT
-; Author:         A.N.Other <myemail@nowhere.com>
+; Author:         Kenny
 ;
 ; -----------------------------------------------------------------------------
 ; === Global Settings =========================================================
@@ -1032,9 +1032,8 @@ IfWinExist, UB Eichstaett-Ingolstadt: Cutter Jo
 	
 	WinActivate, UB Eichstaett-Ingolstadt: Cutter Jo
 	SetKeyDelay, -1
-	Send, ^l
-	Sleep, 200
-	Send, http://www.ub.ku-eichstaett.de/cgi-bin/cutterjo.pl?gugg=%auth%
+    
+	Send, %auth%
 	Sleep, 200
 	Send, {Enter}
 	Sleep, 500
@@ -1046,7 +1045,7 @@ IfWinExist, UB Eichstaett-Ingolstadt: Cutter Jo
 	Sleep, 200
 	Send, ^l
 	Sleep, 200
-	Send, {Enter}
+	Send, {F5}
 	
 
 	Loop, parse, clipboard, `n, `r
@@ -1145,9 +1144,7 @@ combine:
 	Send, ^c
 	ClipWait
 	Sleep, 200
-	Send, ^l
-	Sleep, 200
-	Send, {Enter}
+	Send, {F5}
 	
 
 	Loop, parse, clipboard, `n, `r
@@ -1281,6 +1278,7 @@ congress_search:
 	IfWinNotActive, UB Eichstaett-Ingolstadt: Cutter Jo
 	WinActivate, UB Eichstaett-Ingolstadt: Cutter Jo
 	WinWaitActive, UB Eichstaett-Ingolstadt: Cutter Jo, 
+    
 	Sleep, 200
 	Send, {Tab}
 	Sleep, 100
@@ -1289,6 +1287,7 @@ congress_search:
 	Send, ^c
 	Clipwait
 	Sleep, 200
+    Send, {F5}
 	
 	WinGetClass, WinClass
 	Loop, parse, clipboard, `n, `r
@@ -1646,7 +1645,11 @@ IfWinExist, ahk_class Catalog500.22.0
 	Send, {Tab 2}
 	Sleep, 100
 	GoSub, location
-	SEND, {TAB 7}{CTRLDOWN}v{CTRLUP}
+    SEND, {TAB 6}
+    Sleep, 100
+    Send, 7
+    Sleep, 100
+	SEND, {TAB}{CTRLDOWN}v{CTRLUP}
 ;	Send, {TAB 5}
 	clipalt=%clipboard%
 	Send, {TAB 4}
@@ -1761,8 +1764,12 @@ IfWinExist, ahk_class Catalog500.22.0
 	Sleep, 100
 	
 	GoSub, location
-			
-	SEND, {TAB 7}{CTRLDOWN}v{CTRLUP}
+	
+    SEND, {TAB 6}
+    Sleep, 100
+    Send, 7
+    Sleep, 100
+	SEND, {TAB}{CTRLDOWN}v{CTRLUP}
 	clipalt=%clipboard%
 	Send, {TAB 4}
 	Send, ^c
@@ -2032,9 +2039,8 @@ IfWinExist, UB Eichstaett-Ingolstadt: Cutter Jo
 	
 	WinActivate, UB Eichstaett-Ingolstadt: Cutter Jo
 	SetKeyDelay, -1
-	Send, ^l
-	Sleep, 200
-	SendRaw, http://www.ub.ku-eichstaett.de/cgi-bin/cutterjo.pl?gugg=%auth%
+
+	Send, %auth%
 	} else {
 	
 	Send, ^c
@@ -2067,15 +2073,13 @@ IfWinExist, UB Eichstaett-Ingolstadt: Cutter Jo
 	
 	WinActivate, UB Eichstaett-Ingolstadt: Cutter Jo
 	SetKeyDelay, -1
-	Send, ^l
-	Sleep, 200
-	SendRaw, http://www.ub.ku-eichstaett.de/cgi-bin/cutterjo.pl?gugg=%clipboard%
+
+	Send, %clipboard%
 	}
 	
-	
-	Sleep, 200
+	Sleep, 400
 	Send, {Enter}
-;	Sleep, 200
+	Sleep, 200
 ;	Send, {TAB}
 ;	Sleep, 100
 ;	Send, ^a
@@ -2149,9 +2153,8 @@ IfWinExist, UB Eichstaett-Ingolstadt: Cutter Jo
 	
 	WinActivate, UB Eichstaett-Ingolstadt: Cutter Jo
 	SetKeyDelay, -1
-	Send, ^l
-	Sleep, 200
-	SendRaw, http://www.ub.ku-eichstaett.de/cgi-bin/cutterjo.pl?gugg=%clipboard%
+
+	Send, %clipboard%
 	Sleep, 200
 	Send, {Enter}
 ;	Sleep, 200
@@ -2255,8 +2258,9 @@ IfWinExist, RVK
 	SendRaw, %sstr%
 	Sleep, 400
 	Send, {DEL}
-	Sleep, 100
-	
+	Sleep, 400
+	Send, {ENTER}
+    Sleep, 100
 	Send, {ENTER}
 
 	If (rvk_search = "true"){
@@ -2646,9 +2650,8 @@ IfWinExist, UB Eichstaett-Ingolstadt: Cutter Jo
 	
 	WinActivate, UB Eichstaett-Ingolstadt: Cutter Jo
 	SetKeyDelay, -1
-	Send, ^l
-	Sleep, 200
-	Send, http://www.ub.ku-eichstaett.de/cgi-bin/cutterjo.pl?gugg=%auth%
+
+	Send, %auth%
 	Sleep, 100
 	Send, {Enter}
 	Sleep, 100
