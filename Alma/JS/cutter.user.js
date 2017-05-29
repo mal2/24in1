@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Cutter/Primus Iframe
+// @name         Cutter
 // @namespace    http://tampermonkey.net/
 // @version      0.2
 // @description  try to take over the world!
@@ -86,12 +86,7 @@
                         break;
                 };
             };
-
-            var hulink = "https://hu-berlin.hosted.exlibrisgroup.com/primo_library/libweb/action/search.do?fn=search&ct=search&vl(freeText0)="+$('#pageBeantitle').val().replace(/ /g, '+');
-            var rvklink = "https://rvk.uni-regensburg.de/regensburger-verbundklassifikation-online";
-
             $(".formDiv").first().append("<div class='line clearfix'><div class=' width15  fieldName'>Cutter</div><div class='mandatoryPlaceHolder'>&nbsp;&nbsp;</div><div class=' width15  '><input type='text' id='cutter' value='"+cutter+"'></input></p></div></div>");
-            $(".mainContainer").append("<div><iframe  id='HUContainer' src='"+hulink+"' frameborder='0' scrolling='yes' width='500' height='1024' align='left' sandbox='allow-scripts allow-same-origin'></iframe><iframe id='RVKContainer' src='"+rvklink+"' frameborder='0' scrolling='no' width='1055' height='1024' align='right' sandbox='allow-scripts allow-same-origin'></iframe></div>");
             observerNotTit.observe(document, {
                 childList: true,
                 subtree: true
