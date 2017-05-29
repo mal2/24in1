@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name         Cutter/Primus Iframe
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  try to take over the world!
-// @author       Kenny <k.b@fu-berlin.de>
+// @author       Kenny
 // @downloadURL  https://pastebin.com/wHgkNzC5
 // @updateURL    https://pastebin.com/wHgkNzC5
 // @match        https://fu-berlin.alma.exlibrisgroup.com/mng/action/home.do?mode=ajax
@@ -34,13 +34,29 @@
         return output;
     }
 
+    var observerNotTit = new MutationObserver(function (mutations, men) {
+        // `mutations` is an array of mutations that occurred
+        // `me` is the MutationObserver instance
+        var canvas = document.getElementById('ADD_HIDERADIO_up_list_cresource_editorholdings_listdelete_holdings');
+        if (!canvas) {
+            observerTit.observe(document, {
+                childList: true,
+                subtree: true
+            });
+            men.disconnect();
+            return;
+        }
+    });
+
     var observerTit = new MutationObserver(function (mutations, me) {
         console.log("iframe ready!");
         // `mutations` is an array of mutations that occurred
         // `me` is the MutationObserver instance
         var canvas = document.getElementById('pageBeantitle');
-        if (canvas) {
+        var canvashold = document.getElementById('ADD_HIDERADIO_up_list_cresource_editorholdings_listdelete_holdings');
+        if (canvas && canvashold) {
             console.log("Iframes werden eingebettet");
+
             var author_arr = $("#pageBeantitle").val().split(" / ")[1].split(" ");
             var author = author_arr[0]+author_arr[1];
             author = author.replace(/ä/g, 'ae');
@@ -76,33 +92,14 @@
 
             $(".formDiv").first().append("<div class='line clearfix'><div class=' width15  fieldName'>Cutter</div><div class='mandatoryPlaceHolder'>&nbsp;&nbsp;</div><div class=' width15  '><input type='text' id='cutter' value='"+cutter+"'></input></p></div></div>");
             $(".mainContainer").append("<div><iframe  id='HUContainer' src='"+hulink+"' frameborder='0' scrolling='yes' width='500' height='1024' align='left' sandbox='allow-scripts allow-same-origin'></iframe><iframe id='RVKContainer' src='"+rvklink+"' frameborder='0' scrolling='no' width='1055' height='1024' align='right' sandbox='allow-scripts allow-same-origin'></iframe></div>");
-
+            observerNotTit.observe(document, {
+                childList: true,
+                subtree: true
+            });
             me.disconnect(); // stop observing
             return;
         };
     });
-
-    var observerRegalAufl = new MutationObserver(function (mutations, me) {
-        // `mutations` is an array of mutations that occurred
-        // `me` is the MutationObserver instance
-        var canvas = document.getElementByClassName('gwt-ListBox');
-        if (canvas) {
-            //console.log("Exists!");
-            $(".gwt-ListBox>option:eq(1)").attr("selected", true).change();
-            me.disconnect(); // stop observing
-            return;
-        }
-    });
-
-    //document.addEventListener('copy', function(e){
-    //    e.clipboardData.setData('text/plain', window.getSelection() + " " + cutter);
-    //    e.preventDefault(); // We want our data, not data from any selection, to be written to the clipboard
-    //});
-
-    //observerRegalAufl.observe(document, {
-    //    childList: true,
-    //    subtree: true
-    //});
 
     observerTit.observe(document, {
         childList: true,
