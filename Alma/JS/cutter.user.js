@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Cutter
 // @namespace    http://tampermonkey.net/
-// @version      0.2
+// @version      0.2.5
 // @description  try to take over the world!
 // @author       Kenny
 // @downloadURL  https://pastebin.com/wHgkNzC5
@@ -87,6 +87,7 @@
                 };
             };
             $(".formDiv").first().append("<div class='line clearfix'><div class=' width15  fieldName'>Cutter</div><div class='mandatoryPlaceHolder'>&nbsp;&nbsp;</div><div class=' width15  '><input type='text' id='cutter' value='"+cutter+"'></input></p></div></div>");
+            $(".formDiv").first().append("<div class='line clearfix'><div class=' width15  fieldName'></div><div class='mandatoryPlaceHolder'>&nbsp;&nbsp;</div><div class=' width15  '>"+author+"</p></div></div>");
             observerNotTit.observe(document, {
                 childList: true,
                 subtree: true
