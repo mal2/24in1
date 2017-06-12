@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Auto "In Bearbeitung"
 // @namespace    http://tampermonkey.net/
-// @version      0.2
+// @version      0.2.5
 // @description  try to take over the world!
 // @author       Kenny
 // @match        https://fu-berlin.alma.exlibrisgroup.com/mng/action/home.do?mode=ajax
@@ -32,7 +32,7 @@
         // `mutations` is an array of mutations that occurred
         // `me` is the MutationObserver instance
         var canvas = document.getElementById('pageBeanselectedProcessType');
-        if (canvas) {
+        if (canvas && $("#pageBeanselectedProcessType").val() != "AcqWorkOrder") {
             //console.log("Exists!");
             $("#pageBeanselectedProcessType>option:eq(1)").attr("selected", true).change();
             me.disconnect(); // stop observing
@@ -43,7 +43,7 @@
     var observerDep = new MutationObserver(function (mutations, me) {
         // `mutations` is an array of mutations that occurred
         // `me` is the MutationObserver instance
-        var canvas = document.getElementById('pageBeanselectedRequestDepartment');
+        var canvas = document.getElementById('pageBeanselectedRequestDepartment_textbox');
         if (canvas) {
             console.log("Prozesstyp -> In Bearbeitung (Medienbearbeitung)");
             $("#pageBeanselectedRequestDepartment_textbox").val("Medienbearbeitung");
