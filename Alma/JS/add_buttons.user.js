@@ -4,7 +4,7 @@
 // @version      0.2
 // @description  try to take over the world!
 // @author       Kenny
-// @match        https://fu-berlin.alma.exlibrisgroup.com/mng/action/home.do?mode=ajax
+// @match        https://fu-berlin.alma.exlibrisgroup.com*
 // @grant        none
 // ==/UserScript==
 

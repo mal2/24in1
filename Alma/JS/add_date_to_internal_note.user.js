@@ -2,9 +2,9 @@
 // @name         Add Month/Year To Internal Note
 // @namespace    http://tampermonkey.net/
 // @version      0.2
-// @description  try to take over the world!
-// @author       Kenny
-// @match        https://fu-berlin.alma.exlibrisgroup.com/mng/action/home.do?mode=ajax
+// @description  add MM/YYYY of current month and year to internal note 1
+// @author       Kenny <k.b@fu-berlin.de>
+// @match        https://fu-berlin.alma.exlibrisgroup.com*
 // @grant        none
 // ==/UserScript==
 
@@ -29,7 +29,8 @@
         var canvas = document.getElementById('pageBeanitemMddnxphysicalItemTableinternalNote_1');
         if (canvas) {
             var d = new Date();
-            var add = d.getMonth()+1 + '/' + d.getFullYear();
+            var month = d.getMonth()+1;
+            var add = month + '/' + d.getFullYear();
             console.log("Interne Notiz -> "+add);
             var note = $("#pageBeanitemMddnxphysicalItemTableinternalNote_1").val();
             if (note.indexOf(add) < 0){

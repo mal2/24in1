@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name         Auto-Daten, -Material, -ExRichtlinie
 // @namespace    http://tampermonkey.net/
-// @version      0.1
-// @description  try to take over the world!
-// @author       Kenny
-// @match        https://fu-berlin.alma.exlibrisgroup.com/mng/action/home.do?mode=ajax
+// @version      0.2
+// @description  set (if empty) material type to book, item policy to Selbstausleihe (2 Wochen) and receiving- and inventory date to 01.01.1900
+// @author       Kenny <k.b@fu-berlin.de>
+// @match        https://fu-berlin.alma.exlibrisgroup.com*
 // @grant        none
 // ==/UserScript==
 

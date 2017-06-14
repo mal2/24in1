@@ -1,12 +1,10 @@
 // ==UserScript==
 // @name         Primus Iframe
 // @namespace    http://tampermonkey.net/
-// @version      0.2
-// @description  try to take over the world!
-// @author       Kenny
-// @downloadURL  https://pastebin.com/wHgkNzC5
-// @updateURL    https://pastebin.com/wHgkNzC5
-// @match        https://fu-berlin.alma.exlibrisgroup.com/mng/action/home.do?mode=ajax
+// @version      0.2.5
+// @description  insert HU Primus and RVK-online iframe at bottom of list of holdings
+// @author       Kenny <k.b@fu-berlin.de>
+// @match        https://fu-berlin.alma.exlibrisgroup.com*
 // @grant        none
 // ==/UserScript==
 

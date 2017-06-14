@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name         Search Title
 // @namespace    http://tampermonkey.net/
-// @version      0.2
-// @description  try to take over the world!
-// @author       Kenny
-// @match        https://fu-berlin.alma.exlibrisgroup.com/mng/action/home.do?mode=ajax
+// @version      0.2.5
+// @description  after scanning barcode a search containing title of the first entry is done
+// @author       Kenny <k.b@fu-berlin.de>
+// @match        https://fu-berlin.alma.exlibrisgroup.com*
 // @grant        none
 // ==/UserScript==
 

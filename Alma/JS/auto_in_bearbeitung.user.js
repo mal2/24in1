@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name         Auto "In Bearbeitung"
 // @namespace    http://tampermonkey.net/
-// @version      0.2.5
-// @description  try to take over the world!
-// @author       Kenny
-// @match        https://fu-berlin.alma.exlibrisgroup.com/mng/action/home.do?mode=ajax
+// @version      0.3
+// @description  automatically set process type to AcqWorkOrder and reqest department to Medienbearbeitung in physical Item Editor
+// @author       Kenny <k.b@fu-berlin.de>
+// @match        https://fu-berlin.alma.exlibrisgroup.com*
 // @grant        none
 // ==/UserScript==
 
