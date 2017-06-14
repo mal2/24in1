@@ -42,7 +42,7 @@
             console.log("adding item buttons");
             state = "items";
             $("li[id^='ROW_ACTION_LI_list_']").each(function(){
-                $(this).append($(this).clone().children("ul").children("li")[1]);
+                $(this).append($(this).children("ul").children("li").clone()[1]);
             });
             observerNoButtons.observe(document, {
                 childList: true,
@@ -55,8 +55,8 @@
             console.log("adding hold buttons");
             state = "holdings";
             $("li[id^='ROW_ACTION_LI_list_']").each(function(){
-                $(this).append($(this).clone().children("ul").children("li")[1]);
-                $(this).append($(this).clone().children("ul").children("li")[2]);
+                $(this).append($(this).children("ul").children("li").clone()[1]);
+                $(this).append($(this).children("ul").children("li").clone()[2]);
             });
             observerNoButtons.observe(document, {
                 childList: true,
