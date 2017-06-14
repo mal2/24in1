@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name         Add Buttons
 // @namespace    http://tampermonkey.net/
-// @version      0.2
+// @version      0.2.5
 // @description  try to take over the world!
-// @author       Kenny
+// @author       Kenny <k.b@fu-berlin.de>
 // @match        https://fu-berlin.alma.exlibrisgroup.com*
 // @grant        none
 // ==/UserScript==
@@ -42,7 +42,7 @@
             console.log("adding item buttons");
             state = "items";
             $("li[id^='ROW_ACTION_LI_list_']").each(function(){
-                $(this).append($(this).children("ul").children("li")[1]);
+                $(this).append($(this).clone().children("ul").children("li")[1]);
             });
             observerNoButtons.observe(document, {
                 childList: true,
@@ -55,8 +55,8 @@
             console.log("adding hold buttons");
             state = "holdings";
             $("li[id^='ROW_ACTION_LI_list_']").each(function(){
-                $(this).append($(this).children("ul").children("li")[1]);
-                $(this).append($(this).children("ul").children("li")[2]);
+                $(this).append($(this).clone().children("ul").children("li")[1]);
+                $(this).append($(this).clone().children("ul").children("li")[2]);
             });
             observerNoButtons.observe(document, {
                 childList: true,
