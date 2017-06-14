@@ -2,7 +2,7 @@
 // @name         Add Buttons
 // @namespace    http://tampermonkey.net/
 // @version      0.2.5
-// @description  try to take over the world!
+// @description  show sublinks of Action button under the button
 // @author       Kenny <k.b@fu-berlin.de>
 // @match        https://fu-berlin.alma.exlibrisgroup.com*
 // @grant        none
