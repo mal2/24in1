@@ -4,7 +4,7 @@
 // @version      0.2.5
 // @description  after scanning barcode a search containing title of the first entry is done
 // @author       Kenny <k.b@fu-berlin.de>
-// @match        https://fu-berlin.alma.exlibrisgroup.com*
+// @match        https://fu-berlin.alma.exlibrisgroup.com/*
 // @grant        none
 // ==/UserScript==
 

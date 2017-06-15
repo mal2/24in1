@@ -4,7 +4,7 @@
 // @version      0.2
 // @description  add MM/YYYY of current month and year to internal note 1
 // @author       Kenny <k.b@fu-berlin.de>
-// @match        https://fu-berlin.alma.exlibrisgroup.com*
+// @match        https://fu-berlin.alma.exlibrisgroup.com/*
 // @grant        none
 // ==/UserScript==
 

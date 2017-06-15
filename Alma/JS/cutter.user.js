@@ -4,7 +4,7 @@
 // @version      0.3
 // @description  appends CSN to ressource description of list of holdings
 // @author       Kenny <k.b@fu-berlin.de>
-// @match        https://fu-berlin.alma.exlibrisgroup.com*
+// @match        https://fu-berlin.alma.exlibrisgroup.com/*
 // @grant        none
 // ==/UserScript==
 

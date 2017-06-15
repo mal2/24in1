@@ -4,7 +4,7 @@
 // @version      0.3
 // @description  automatically set process type to AcqWorkOrder and reqest department to Medienbearbeitung in physical Item Editor
 // @author       Kenny <k.b@fu-berlin.de>
-// @match        https://fu-berlin.alma.exlibrisgroup.com*
+// @match        https://fu-berlin.alma.exlibrisgroup.com/*
 // @grant        none
 // ==/UserScript==
 
