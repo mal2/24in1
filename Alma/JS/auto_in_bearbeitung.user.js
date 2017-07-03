@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Auto "In Bearbeitung"
 // @namespace    http://tampermonkey.net/
-// @version      0.3
+// @version      0.4
 // @description  automatically set process type to AcqWorkOrder and reqest department to Medienbearbeitung in physical Item Editor
 // @author       Kenny <k.b@fu-berlin.de>
 // @match        https://fu-berlin.alma.exlibrisgroup.com/*
@@ -51,6 +51,12 @@
             observerNotEditor.observe(document, {
                 childList: true,
                 subtree: true
+            });
+            var input = $('#pageBeanitemMddnxphysicalItemTablealternativeCallNumber');
+            input.on('change keydown paste input', function(){
+                $('#pageBeanitemMddnxphysicalItemTablealternativeCallNumberType_textbox').val("In Unterfeld $2 angegebene Quelle");
+                $('#pageBeanitemMddnxphysicalItemTablealtNumberSource').val('rvk');
+                $('#pageBeanitemMddnxphysicalItemTablealternativeCallNumberType:eq(7)').attr("selected", true).change();
             });
             me.disconnect(); // stop observing
             return;
