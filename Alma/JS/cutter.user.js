@@ -70,8 +70,22 @@
             author = author.replace(/æ/g, 'ae');
             author = author.replace(/œ/g, 'oe');
             author = author.replace(/ø/g, 'oe');
+            author = author.replace(/'/g, '');
+            console.log(author);
 
-            author = removeDiacritics(author)
+            author = removeDiacritics(author);
+            author_arr = author.split(",");
+            author_arr[0] = author_arr[0].toLowerCase();
+            author_arr[0] = author_arr[0].charAt(0).toUpperCase() + author_arr[0].slice(1);
+            author_arr[1] = author_arr[1].toLowerCase();
+            author_arr[1] = author_arr[1].charAt(0).toUpperCase() + author_arr[1].slice(1);
+            author = author_arr[0]+","+author_arr[1];
+            console.log(author);
+
+            var auth_prev = ""
+            var auth_aft = ""
+            var cutter_prev = ""
+            var cutter_aft = ""
 
             for (i = author.length; i >= 0 ; i--) {
                 index = authList.indexOf(author.substr(0,i));
@@ -81,11 +95,18 @@
                     while (author.substr(0,len) > authList[index+1])
                         index += 1
                         cutter = cutterList[index]
+                        auth_prev = authList[index-1]
+                        auth_aft = authList[index+1]
+                        cutter_prev = cutterList[index-1]
+                        cutter_aft = cutterList[index+1]
                         break;
                 };
             };
-            $(".formDiv").first().append("<div class='line clearfix'><div class=' width15  fieldName'>Cutter</div><div class='mandatoryPlaceHolder'>&nbsp;&nbsp;</div><div class=' width15  '><input type='text' id='cutter' value='"+cutter+"'></input></p></div></div>");
-            $(".formDiv").first().append("<div class='line clearfix'><div class=' width15  fieldName'></div><div class='mandatoryPlaceHolder'>&nbsp;&nbsp;</div><div class=' width15  '>"+author+"</p></div></div>");
+
+            $(".formDiv").first().append("<div class='line clearfix'><div class=' width15  fieldName'>Cutter davor</div><div class='mandatoryPlaceHolder'>&nbsp;&nbsp;</div><div class=' width15  '><div id='cutter_prev'>"+auth_prev+" "+cutter_prev+"</div></div></div>");
+            $(".formDiv").first().append("<div class='line clearfix'><div class=' width15  fieldName'>Cutter</div><div class='mandatoryPlaceHolder'>&nbsp;&nbsp;</div><div>"+author+"&nbsp;&nbsp;</div><div class=' width15  '><input type='text' id='cutter' value='"+cutter+"'></input></div></div></div></div>");
+            $(".formDiv").first().append("<div class='line clearfix'><div class=' width15  fieldName'>Cutter danach</div><div class='mandatoryPlaceHolder'>&nbsp;&nbsp;</div><div class=' width15  '><div id='cutter_after'>"+auth_aft+" "+cutter_aft+"</div></div></div>");
+
             observerNotTit.observe(document, {
                 childList: true,
                 subtree: true

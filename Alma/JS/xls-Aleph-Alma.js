@@ -44,9 +44,10 @@
         // `mutations` is an array of mutations that occurred
         // `me` is the MutationObserver instance
         var canvas = document.getElementById('ADD_HIDERADIO_up_list_cresource_editoritems_listchangeHoldings');
-        if (canvas && ($('.listActions').size() == 1)) {
+        var length = document.getElementsByClassName('listActions').length;
+        if (canvas && (length == 1)) {
             console.log("goto single item");
-            $("#ROW_ACTION_list_0_c\\.button\\.edit").children("input").trigger("click")
+            $("#ROW_ACTION_list_0_c\\.button\\.edit").children("input").trigger("click");
             observerInternalNote.observe(document, {
                 childList: true,
                 subtree: true
@@ -61,7 +62,7 @@
         // `me` is the MutationObserver instance
         var canvas = document.getElementById('cresource_editornotes_span');
         if (canvas) {
-            $('#cresource_editornotes').click();
+            canvas.click();
             observerInternalNoteEdit.observe(document, {
                 childList: true,
                 subtree: true
@@ -75,40 +76,31 @@
         // `mutations` is an array of mutations that occurred
         // `me` is the MutationObserver instance
         var canvas = document.getElementById('pageBeanitemMddnxphysicalItemTableinternalNote_1');
-            if (canvas) {
-                var modal = document.getElementById('modal700g');
-                if (!modal) {
-                    $('<div id="modal700g"></div>').appendTo('body')
-                        .html('<div><h6>700g entfernen?</h6></div>')
-                        .dialog({
-                        create: function (event, ui) {
-                            $(".ui-widget-header").hide();
-                        },
-                        modal: true, zIndex: 10000, autoOpen: true, dialogClass: "no-titlebar",
-                        width: 'auto', resizable: false,
-                        buttons: {
-                            Yes: function () {
-                                var node = $('#pageBeanitemMddnxphysicalItemTableinternalNote_1');
-                                node.val(function(i,v){return v.replace("; 700g","");})
-                                node.val(function(i,v){return v.replace("700g","");})
-                                $(this).dialog("close");
-                            },
-                            No: function () {
-                                $(this).dialog("close");
-                            }
-                        },
-                        close: function (event, ui) {
-                            $(this).remove();
-                            $('#PAGE_BUTTONS_cbuttonsaveConfirmation').trigger("click");
-                            observerNotSearch.observe(document, {
-                                childList: true,
-                                subtree: true
-                            });
-                            me.disconnect(); // stop observing
-                            return;
-                        }
+        var conf = true;
+        var node = $('#pageBeanitemMddnxphysicalItemTableinternalNote_1');
+        var nodeval = node.val();
+            if (canvas && confirm && nodeval.indexOf("700g")>=0) {
+                
+                node.val(function(i,v){return v.replace("; 700g","");})
+                node.val(function(i,v){return v.replace("700g","");})
+                var nodenew = node.val();
+                node.val(nodeval);
+                if (window.confirm("Interne Notiz von '"+nodeval+"' zu '"+nodenew+"' ändern?")) {
+                    conf = false
+                    node.val(nodenew)
+                    $('#PAGE_BUTTONS_cbuttonsaveConfirmation').trigger("click");
+                    observerSearch.observe(document, {
+                        childList: true,
+                        subtree: true
+                    });
+                } else {
+                    observerSearch.observe(document, {
+                        childList: true,
+                        subtree: true
                     });
                 }
+                
+            
             }
     });
     

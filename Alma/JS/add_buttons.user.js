@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Add Buttons
 // @namespace    http://tampermonkey.net/
-// @version      0.2.5
+// @version      0.2.6
 // @description  show sublinks of Action button under the button
 // @author       Kenny <k.b@fu-berlin.de>
 // @match        https://fu-berlin.alma.exlibrisgroup.com/*
@@ -56,7 +56,7 @@
             state = "holdings";
             $("li[id^='ROW_ACTION_LI_list_']").each(function(){
                 $(this).append($(this).children("ul").children("li").clone()[1]);
-                $(this).append($(this).children("ul").children("li").clone()[2]);
+                $(this).append($(this).children("ul").children("li").clone()[3]);
             });
             observerNoButtons.observe(document, {
                 childList: true,
