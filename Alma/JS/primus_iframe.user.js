@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Primus Iframe
 // @namespace    http://tampermonkey.net/
-// @version      0.2.5
+// @version      0.2.6
 // @description  insert HU Primus and RVK-online iframe at bottom of list of holdings
 // @author       Kenny <k.b@fu-berlin.de>
 // @match        https://fu-berlin.alma.exlibrisgroup.com/*
@@ -13,7 +13,7 @@
     var observerNotTit = new MutationObserver(function (mutations, men) {
         // `mutations` is an array of mutations that occurred
         // `me` is the MutationObserver instance
-        var canvas = document.getElementById('ADD_HIDERADIO_up_list_cresource_editorholdings_listdelete_holdings');
+        var canvas = document.getElementById('ADD_HIDERADIO_up_listWithFilters_cresource_editorholdings_listdelete_holdings');
         if (!canvas) {
             observerTit.observe(document, {
                 childList: true,
@@ -29,7 +29,7 @@
         // `mutations` is an array of mutations that occurred
         // `me` is the MutationObserver instance
         var canvas = document.getElementById('pageBeantitle');
-        var canvashold = document.getElementById('ADD_HIDERADIO_up_list_cresource_editorholdings_listdelete_holdings');
+        var canvashold = document.getElementById('ADD_HIDERADIO_up_listWithFilters_cresource_editorholdings_listdelete_holdings');
         if (canvas && canvashold) {
             console.log("Iframes werden eingebettet");
 

@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name         Cutter
+// @name         cutter
 // @namespace    http://tampermonkey.net/
-// @version      0.3
+// @version      0.3.1
 // @description  appends CSN to ressource description of list of holdings
 // @author       Kenny <k.b@fu-berlin.de>
 // @match        https://fu-berlin.alma.exlibrisgroup.com/*
@@ -47,13 +47,13 @@
     });
 
     var observerTit = new MutationObserver(function (mutations, me) {
-        console.log("iframe ready!");
+        console.log("Cutter ready!");
         // `mutations` is an array of mutations that occurred
         // `me` is the MutationObserver instance
         var canvas = document.getElementById('pageBeantitle');
-        var canvashold = document.getElementById('ADD_HIDERADIO_up_list_cresource_editorholdings_listdelete_holdings');
+        var canvashold = document.getElementById('ADD_HIDERADIO_up_listWithFilters_cresource_editorholdings_listdelete_holdings');
         if (canvas && canvashold) {
-            console.log("Iframes werden eingebettet");
+            console.log("Cutter wird eingebettet");
 
             var author_arr = $("#pageBeantitle").val().split(" / ")[1].split(" ");
             var author = author_arr[0]+author_arr[1];
@@ -71,7 +71,6 @@
             author = author.replace(/œ/g, 'oe');
             author = author.replace(/ø/g, 'oe');
             author = author.replace(/'/g, '');
-            console.log(author);
 
             author = removeDiacritics(author);
             author_arr = author.split(",");
@@ -102,10 +101,12 @@
                         break;
                 };
             };
-
-            $(".formDiv").first().append("<div class='line clearfix'><div class=' width15  fieldName'>Cutter davor</div><div class='mandatoryPlaceHolder'>&nbsp;&nbsp;</div><div class=' width15  '><div id='cutter_prev'>"+auth_prev+" "+cutter_prev+"</div></div></div>");
-            $(".formDiv").first().append("<div class='line clearfix'><div class=' width15  fieldName'>Cutter</div><div class='mandatoryPlaceHolder'>&nbsp;&nbsp;</div><div>"+author+"&nbsp;&nbsp;</div><div class=' width15  '><input type='text' id='cutter' value='"+cutter+"'></input></div></div></div></div>");
-            $(".formDiv").first().append("<div class='line clearfix'><div class=' width15  fieldName'>Cutter danach</div><div class='mandatoryPlaceHolder'>&nbsp;&nbsp;</div><div class=' width15  '><div id='cutter_after'>"+auth_aft+" "+cutter_aft+"</div></div></div>");
+            console.log(cutter);
+            if ($("#cutter_after").length == 0) {
+                $(".formDiv").first().append("<div class='line clearfix'><div class=' width15  fieldName'>Cutter davor</div><div class='mandatoryPlaceHolder'>&nbsp;&nbsp;</div><div class=' width15  '><div id='cutter_prev'>"+auth_prev+" "+cutter_prev+"</div></div></div>");
+                $(".formDiv").first().append("<div class='line clearfix'><div class=' width15  fieldName'>Cutter</div><div class='mandatoryPlaceHolder'>&nbsp;&nbsp;</div><div>"+author+"&nbsp;&nbsp;</div><div class=' width15  '><input type='text' id='cutter' value='"+cutter+"'></input></div></div></div></div>");
+                $(".formDiv").first().append("<div class='line clearfix'><div class=' width15  fieldName'>Cutter danach</div><div class='mandatoryPlaceHolder'>&nbsp;&nbsp;</div><div class=' width15  '><div id='cutter_after'>"+auth_aft+" "+cutter_aft+"</div></div></div>");
+            }
 
             observerNotTit.observe(document, {
                 childList: true,
