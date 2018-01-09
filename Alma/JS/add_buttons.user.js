@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Add Buttons
 // @namespace    http://tampermonkey.net/
-// @version      0.2.7
+// @version      0.3
 // @description  show sublinks of Action button under the button
 // @author       Kenny <k.b@fu-berlin.de>
 // @match        https://fu-berlin.alma.exlibrisgroup.com/*
@@ -41,9 +41,16 @@
         if (canvasitems && (state != "items")) {
             console.log("adding item buttons");
             state = "items";
-            $("li[id^='ROW_ACTION_LI_list']").each(function(){
-                $(this).append($(this).children("ul").children("li").clone()[1]);
+            $("li[id^='ROW_ACTION_list']").each(function(){
+                console.log($(this).children().attr("title"));
+                if ($(this).children().attr("title") == "Ansicht" || $(this).children().attr("title") == "Bearbeiten") {
+                    $(this).parent().parent().append($(this).children().clone());
+                    $(this).parent().parent().append("<br>");
+                }
             });
+            //$("li[id^='ROW_ACTION_list']").each(function(){
+            //    $(this).append($(this).children("a").clone()[1]);
+            //});
             observerNoButtons.observe(document, {
                 childList: true,
                 subtree: true
@@ -54,10 +61,17 @@
         if (canvashold && (state != "holdings")) {
             console.log("adding hold buttons");
             state = "holdings";
-            $("li[id^='ROW_ACTION_LI_list']").each(function(){
-                $(this).append($(this).children("ul").children("li").clone()[1]);
-                $(this).append($(this).children("ul").children("li").clone()[3]);
+            $("li[id^='ROW_ACTION_list']").each(function(){
+                console.log($(this).children().attr("title"));
+                if ($(this).children().attr("title") == "Ansicht" || $(this).children().attr("title") == "Bearbeiten") {
+                    $(this).parent().parent().append($(this).children().clone());
+                    $(this).parent().parent().append("<br>");
+                }
             });
+            //$("li[id^='ROW_ACTION_LI_list']").each(function(){
+            //    $(this).append($(this).children("ul").children("li").clone()[1]);
+            //    $(this).append($(this).children("ul").children("li").clone()[3]);
+            //});
             observerNoButtons.observe(document, {
                 childList: true,
                 subtree: true
