@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         cutter
 // @namespace    http://tampermonkey.net/
-// @version      0.3.1
+// @version      0.4
 // @description  appends CSN to ressource description of list of holdings
 // @author       Kenny <k.b@fu-berlin.de>
 // @match        https://fu-berlin.alma.exlibrisgroup.com/*
@@ -103,9 +103,17 @@
             };
             console.log(cutter);
             if ($("#cutter_after").length == 0) {
-                $(".formDiv").first().append("<div class='line clearfix'><div class=' width15  fieldName'>Cutter davor</div><div class='mandatoryPlaceHolder'>&nbsp;&nbsp;</div><div class=' width15  '><div id='cutter_prev'>"+auth_prev+" "+cutter_prev+"</div></div></div>");
-                $(".formDiv").first().append("<div class='line clearfix'><div class=' width15  fieldName'>Cutter</div><div class='mandatoryPlaceHolder'>&nbsp;&nbsp;</div><div>"+author+"&nbsp;&nbsp;</div><div class=' width15  '><input type='text' id='cutter' value='"+cutter+"'></input></div></div></div></div>");
-                $(".formDiv").first().append("<div class='line clearfix'><div class=' width15  fieldName'>Cutter danach</div><div class='mandatoryPlaceHolder'>&nbsp;&nbsp;</div><div class=' width15  '><div id='cutter_after'>"+auth_aft+" "+cutter_aft+"</div></div></div>");
+                $(".col.col-md-12.col-xs-12.marbottom7").first().append(
+                "<div id='cutter_after'> \
+                    <div class='margin0 marbottom2'> \
+                       <div class='padRight20 pull-left'>Cutter davor</div> \
+                       <div class='displayFlex'>"+auth_prev+" "+cutter_prev+"</div> \
+                       <div class='padRight30 pull-left'>Cutter</div> \
+                       <div class='padLeft30 displayFlex'>"+author+"<input type='text' id='cutter' value='"+cutter+"'></input></div> \
+                       <div class='padRight10 pull-left'>Cutter danach</div> \
+                       <div class='displayFlex'>"+auth_aft+" "+cutter_aft+"</div> \
+                    </div> \
+                 </div>");
             }
 
             observerNotTit.observe(document, {

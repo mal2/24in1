@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Auto-Daten, -Material, -ExRichtlinie
 // @namespace    http://tampermonkey.net/
-// @version      0.2
+// @version      0.3
 // @description  set (if empty) material type to book, item policy to Selbstausleihe (2 Wochen) and receiving- and inventory date to 01.01.1900
 // @author       Kenny <k.b@fu-berlin.de>
 // @match        https://fu-berlin.alma.exlibrisgroup.com/*
@@ -30,20 +30,22 @@
         if (canvas){
             if ($("#pageBeandataObjectarrivalDate").val() === "") { //Receiving date
                 console.log("Empfangsdatum eingefügt");
+                $("#pageBeandataObjectarrivalDate").datepicker();
                 $("#pageBeandataObjectarrivalDate").datepicker("setDate", new Date(1900,0,1));
                 $("#pageBeandataObjectarrivalDate").focus().change();
                 $("#ui-datepicker-div").hide();
             }
             if ($("#pageBeandataObjectinventoryDate").val() === "") { //Intentory date
                 console.log("Inventarisierungsdatum eingefügt");
+                $("#pageBeandataObjectinventoryDate").datepicker();
                 $("#pageBeandataObjectinventoryDate").datepicker("setDate", new Date(1900,0,1));
                 $("#pageBeandataObjectinventoryDate").focus().change();
                 $("#ui-datepicker-div").hide();
             }
-            if ($("#pageBeanitemMddnxphysicalItemTablematerialType_textbox").val() === " ") { //Material type
+            if ($("#pageBeanitemMddnxphysicalItemTablematerialType").val() === " ") { //Material type
                 console.log("Buch eingefügt");
-                $("#pageBeanitemMddnxphysicalItemTablematerialType>option:eq(4)").attr("selected", true).change();
-                $("#pageBeanitemMddnxphysicalItemTablematerialType_textbox").val("Buch", true).change();
+                $("#pageBeanitemMddnxphysicalItemTablematerialType_hiddenSelect>option:eq(4)").attr("selected", true).change();
+                $("#pageBeanitemMddnxphysicalItemTablematerialType").val("Buch", true).change();
             }
             if ($("#pageBeanitemMddnxphysicalItemTableitemPolicy_textbox").val() === " ") { //Item policy
                 console.log("Selbstausleihe (2 Wochen) eingefügt");

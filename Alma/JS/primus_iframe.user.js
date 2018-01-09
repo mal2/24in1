@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Primus Iframe
 // @namespace    http://tampermonkey.net/
-// @version      0.2.6
+// @version      0.3
 // @description  insert HU Primus and RVK-online iframe at bottom of list of holdings
 // @author       Kenny <k.b@fu-berlin.de>
 // @match        https://fu-berlin.alma.exlibrisgroup.com/*
@@ -36,7 +36,7 @@
             var hulink = "https://hu-berlin.hosted.exlibrisgroup.com/primo_library/libweb/action/search.do?fn=search&ct=search&vl(freeText0)="+$('#pageBeantitle').val().replace(/ /g, '+')+"&fn=search&ct=search&initialSearch=true&mode=Basic&tab=default_tab&indx=1&dum=true&srt=rank&vid=hub_ub&frbg=390969109&fctN=facet_frbrgroupid&fctV=390969109";
             var rvklink = "https://rvk.uni-regensburg.de/regensburger-verbundklassifikation-online";
 
-            $(".mainContainer").append("<div><iframe  id='HUContainer' src='"+hulink+"' frameborder='0' scrolling='yes' width='500' height='1024' align='left' sandbox='allow-scripts allow-same-origin'></iframe><iframe id='RVKContainer' src='"+rvklink+"' frameborder='0' scrolling='no' width='1055' height='1024' align='right' sandbox='allow-scripts allow-same-origin'></iframe></div>");
+            $("#fullPageContent").append("<div><iframe  id='HUContainer' src='"+hulink+"' frameborder='0' scrolling='yes' width='500' height='1024' align='left' sandbox='allow-scripts allow-same-origin'></iframe><iframe id='RVKContainer' src='"+rvklink+"' frameborder='0' scrolling='no' width='1080' height='1024' align='right' sandbox='allow-scripts allow-same-origin'></iframe></div>");
             observerNotTit.observe(document, {
                 childList: true,
                 subtree: true
