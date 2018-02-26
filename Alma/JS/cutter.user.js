@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         cutter
 // @namespace    http://tampermonkey.net/
-// @version      0.5.1
+// @version      0.5.2
 // @description  appends CSN to ressource description of list of holdings
 // @author       Kenny <k.b@fu-berlin.de>
 // @match        https://fu-berlin.alma.exlibrisgroup.com/*
@@ -18,20 +18,14 @@
     {
         var output = "";
           
-        input = input.replace(/ä/g, 'ae');
-        input = input.replace(/ö/g, 'oe');
-        input = input.replace(/ü/g, 'ue');
-        input = input.replace(/Ä/g, 'Ae');
-        input = input.replace(/Ö/g, 'Oe');
-        input = input.replace(/Ü/g, 'Ue');
-        input = input.replace(/ß/g, 'ss');
-        input = input.replace(/Æ/g, 'Ae');
-        input = input.replace(/Œ/g, 'Oe');
-        input = input.replace(/Ø/g, 'Oe');
-        input = input.replace(/æ/g, 'ae');
-        input = input.replace(/œ/g, 'oe');
-        input = input.replace(/ø/g, 'oe');
-        input = input.replace(/'/g, '');
+        input = input.replace(/\u0061\u0308/g, 'ae');
+        input = input.replace(/\u006F\u0308/g, 'oe');
+        input = input.replace(/\u0075\u0308/g, 'ue');
+        input = input.replace(/\u00DF/g, 'ss');
+        input = input.replace(/\u00E6/g, 'ae');
+        input = input.replace(/\u0153/g, 'oe');
+        input = input.replace(/\u00F8/g, 'oe');
+        input = input.replace(/\u0027/g, '');
         var normalized = input.normalize("NFD");
         var i=0;
         var j=0;
