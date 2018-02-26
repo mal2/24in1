@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         cutter
 // @namespace    http://tampermonkey.net/
-// @version      0.4.1
+// @version      0.5.1
 // @description  appends CSN to ressource description of list of holdings
 // @author       Kenny <k.b@fu-berlin.de>
 // @match        https://fu-berlin.alma.exlibrisgroup.com/*
@@ -78,6 +78,9 @@
         // `me` is the MutationObserver instance
         var canvas = document.getElementById('ADD_HIDERADIO_up_list_cresource_editorholdings_listdelete_holdings');
         if (!canvas) {
+            canvas = document.getElementById('Record_Simple_View_Header_title');
+        }     
+        if (!canvas) {
             observerTit.observe(document, {
                 childList: true,
                 subtree: true
@@ -93,10 +96,17 @@
         // `me` is the MutationObserver instance
         var canvas = document.getElementById('pageBeantitle');
         var canvashold = document.getElementById('ADD_HIDERADIO_up_listWithFilters_cresource_editorholdings_listdelete_holdings');
+        var author_arr = $("#pageBeantitle").val().toLowerCase().split(" / ")[1].split(" ");
+        if (!canvashold) {
+            canvashold = document.getElementById('Record_Simple_View_Header_title');
+        } 
         if (canvas && canvashold) {
             console.log("Cutter wird eingebettet");
 
             var author_arr = $("#pageBeantitle").val().toLowerCase().split(" / ")[1].split(" ");
+            if (!author_arr){
+                author_arr = $("#pageBeantitle").text().toLowerCase().split(" / ")[1].split(" ");
+            }
             var author = author_arr[0]+author_arr[1];
 
             author = removeDiacritics(author);
@@ -107,6 +117,9 @@
             console.log(author);
             
             var extra_arr = $("#pageBeantitle").val().toLowerCase().split(" / ")[0].split(" ");
+            if (!extra_arr){
+                extra_arr = $("#pageBeantitle").text().toLowerCase().split(" / ")[0].split(" ");
+            }
             var extra_cu;
             var i=0;
             while (i<extra_arr.length)
@@ -135,13 +148,13 @@
             
             console.log(cutter);
             if ($("#cutter_after").length == 0) {
-                $(".col.col-md-12.col-xs-12.marbottom7").first().append(
+                $(".col.col-md-12.col-xs-12.marbottom5").first().append(
                 "<div id='cutter_after'> \
                     <div class='margin0 marbottom2'> \
                        <div class='padRight20 pull-left'>Cutter davor</div> \
                        <div class='displayFlex'>"+auth_prev+" "+cutter_prev+"</div> \
                        <div class='padRight30 pull-left'>Cutter</div> \
-                       <div class='padLeft30 displayFlex'>"+author+"<input type='text' id='cutter' value='"+cutter+"'></input></div> \
+                       <div class='padLeft30 displayFlex'>"+author+" "+"<input type='text' id='cutter' value='"+cutter+"'></input></div> \
                        <div class='padRight10 pull-left'>Cutter danach</div> \
                        <div class='displayFlex'>"+auth_aft+" "+cutter_aft+"</div> \
                        <div class='padRight15 pull-left'>Extra Cutter</div> \

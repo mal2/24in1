@@ -43,7 +43,7 @@
             state = "items";
             $("li[id^='ROW_ACTION_list']").each(function(){
                 console.log($(this).children().attr("title"));
-                if ($(this).children().attr("title") == "Ansicht" || $(this).children().attr("title") == "Bearbeiten") {
+                if ($(this).children().attr("title") == "Ansicht" || $(this).children().attr("title") == "Bearbeiten" || $(this).children().attr("title") == "Exemplare ansehen") {
                     $(this).parent().parent().append($(this).children().clone());
                     $(this).parent().parent().append("<br>");
                 }
@@ -63,7 +63,7 @@
             state = "holdings";
             $("li[id^='ROW_ACTION_list']").each(function(){
                 console.log($(this).children().attr("title"));
-                if ($(this).children().attr("title") == "Ansicht" || $(this).children().attr("title") == "Bearbeiten") {
+                if ($(this).children().attr("title") == "Ansicht" || $(this).children().attr("title") == "Bearbeiten" || $(this).children().attr("title") == "Exemplare ansehen") {
                     $(this).parent().parent().append($(this).children().clone());
                     $(this).parent().parent().append("<br>");
                 }

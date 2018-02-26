@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Add Month/Year To Internal Note
 // @namespace    http://tampermonkey.net/
-// @version      0.2
+// @version      0.2.1
 // @description  add MM/YYYY of current month and year to internal note 1
 // @author       Kenny <k.b@fu-berlin.de>
 // @match        https://fu-berlin.alma.exlibrisgroup.com/*
@@ -41,6 +41,7 @@
                 } else {
                     $("#pageBeanitemMddnxphysicalItemTableinternalNote_1").val(add);
                 }
+                $("#pageBeanitemMddnxphysicalItemTableinternalNote_1").css('color','red')
             }
             //if (internal){
             //    internal = false;
