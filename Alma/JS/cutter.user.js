@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         cutter
 // @namespace    http://tampermonkey.net/
-// @version      0.5.2
+// @version      0.5.3
 // @description  appends CSN to ressource description of list of holdings
 // @author       Kenny <k.b@fu-berlin.de>
 // @match        https://fu-berlin.alma.exlibrisgroup.com/*
@@ -18,9 +18,12 @@
     {
         var output = "";
           
-        input = input.replace(/\u0061\u0308/g, 'ae');
-        input = input.replace(/\u006F\u0308/g, 'oe');
-        input = input.replace(/\u0075\u0308/g, 'ue');
+        //input = input.replace(/\u0061\u0308/g, 'ae'); // ExLibris can't decide on encoding 
+        //input = input.replace(/\u006F\u0308/g, 'oe');
+        //input = input.replace(/\u0075\u0308/g, 'ue');
+        input = input.replace(/\u00E4/g, 'ae');
+        input = input.replace(/\u00F6/g, 'oe');
+        input = input.replace(/\u00FC/g, 'ue');
         input = input.replace(/\u00DF/g, 'ss');
         input = input.replace(/\u00E6/g, 'ae');
         input = input.replace(/\u0153/g, 'oe');
@@ -125,7 +128,7 @@
                 }
                 i++;
             }
-            extra_cu = removeDiacritics(extra_cu);
+            
             
             var cutter_arr = [];
             cutter_arr = getCutter(author);
@@ -137,6 +140,7 @@
 
             extra_arr = [];
             extra_cu = extra_cu.charAt(0).toUpperCase()+extra_cu.slice(1);
+            extra_cu = removeDiacritics(extra_cu);
             extra_arr = getCutter(extra_cu);
             var extra_cut = extra_arr[0];
             
