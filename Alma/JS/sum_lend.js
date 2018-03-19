@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         countLend
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  add sum of lendings to breadcrumbs
 // @author       Kenny <k.b@fu-berlin.de>
 // @match        https://fu-berlin.alma.exlibrisgroup.com/*
@@ -12,7 +12,7 @@
     var observerNotSumLend = new MutationObserver(function (mutations, men) {
         // `mutations` is an array of mutations that occurred
         // `me` is the MutationObserver instance
-        var canvas = document.getElementById('RECORD_VIEW_SPAN_results_ROW_ID_0_LABEL_processType');
+        var canvas = document.getElementById('RECORD_VIEW_SPAN_results_ROW_ID_0_LABEL_inventoryNumber');
         if (!canvas) {
             observerSumLend.observe(document, {
                 childList: true,
@@ -26,7 +26,7 @@
   var observerSumLend = new MutationObserver(function (mutations, me) {
         // `mutations` is an array of mutations that occurred
         // `me` is the MutationObserver instance
-        var canvas = document.getElementById('RECORD_VIEW_SPAN_results_ROW_ID_0_LABEL_processType');
+        var canvas = document.getElementById('RECORD_VIEW_SPAN_results_ROW_ID_0_LABEL_inventoryNumber');
         if (canvas) {
             var d = new Date();
             var sum = 0;
